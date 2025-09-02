@@ -25,8 +25,9 @@ public class ClubServiceImpl implements ClubService{
     }
 
     @Override
-    public Club saveClub(Club club) {
-        return clubRepository.save(club);
+    public Club saveClub(ClubDto club) {
+        Club clubs = mapToClub(club);
+        return clubRepository.save(clubs);
     }
 
     @Override
@@ -38,6 +39,11 @@ public class ClubServiceImpl implements ClubService{
     @Override
     public void updateClub(ClubDto clubDto) {
         Club club = mapToClub(clubDto);
+    }
+
+    @Override
+    public void delete(long clubId) {
+        clubRepository.deleteById(clubId);
     }
 
     private Club mapToClub(ClubDto c) {

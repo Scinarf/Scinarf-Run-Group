@@ -30,6 +30,7 @@
                                 name="title"
                                 th:field="*{title}"
                                 placeholder="title">
+                        <p th:if="${#fields.hasErrors('title')}" class="text-danger" th:errors="*{title}"></p>
                     </div>
                     <div class="form-group col-md-6">
                         <label for="photoUrl">Photourl</label>
@@ -40,6 +41,7 @@
                                 name="photoUrl"
                                 th:field="*{photoUrl}"
                                 placeholder="Photo Url">
+                        <p th:if="${#fields.hasErrors('photoUrl')}" class="text-danger" th:errors="*{photoUrl}"></p>
                     </div>
 
                     <div class="form-group mb-3">
@@ -51,6 +53,7 @@
                                 name="content"
                                 th:field="*{content}"
                                 placeholder="content">
+                        <p th:if="${#fields.hasErrors('content')}" class="text-danger" th:errors="*{content}"></p>
                     </div>
                 </div>
 
