@@ -1,0 +1,115 @@
+<html
+        xmlns:th="http://thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout}"
+
+>
+
+<head>
+    <title>Events Create</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/css/tempusdominus-bootstrap-4.min.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/js/tempusdominus-bootstrap-4.min.js"></script>
+
+</head>
+<body class="d-flex flex-column h-100">
+<main class="flex-shrink-0">
+    <!-- Navigation-->
+
+    <!-- Page Content-->
+    <section layout:fragment="body" class="py-5">
+        <div class="container">
+            <form role="form" method="post" th:action="@{/events/{clubId}(clubId=${clubId})}" th:object="${event}">
+
+                <div class="form-row">
+
+                    <div class="form-group col-md-6">
+                        <label for="name">Name</label>
+
+                        <input
+                                type="text"
+                                class="form-control"
+                                id="name"
+                                name="title"
+                                th:field="*{name}"
+                                placeholder="Event name">
+                        <p th:if="${#fields.hasErrors('name')}" class="text-danger" th:errors="*{name}"></p>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="photoUrl">Photourl</label>
+                        <input
+                                type="text"
+                                class="form-control"
+                                id="photoUrl"
+                                name="photoUrl"
+                                th:field="*{photoUrl}"
+                                placeholder="Photo Url">
+                        <p th:if="${#fields.hasErrors('photoUrl')}" class="text-danger" th:errors="*{photoUrl}"></p>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label for="type">Type</label>
+                        <input
+                                type="text"
+                                class="form-control"
+                                id="type"
+                                name="type"
+                                th:field="*{type}"
+                                placeholder="Event type">
+                        <p th:if="${#fields.hasErrors('type')}" class="text-danger" th:errors="*{type}"></p>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label for="startTime">StartTime:</label>
+                        <input
+                                type="text"
+                                class="form-control datetimepicker-input"
+                                data-bs-target="#datetimepicker1"
+                                id="startTime"
+                                name="startTime"
+                                th:field="*{startTime}"
+                                placeholder="Event startTime">
+                        <p th:if="${#fields.hasErrors('startTime')}" class="text-danger" th:errors="*{startTime}"></p>
+                        <div class="input-group-append" data-bs-target="#datetimepicker1" data-target="datetimepicker"></div>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label for="endTime">EndTime:</label>
+                        <input
+                                type="text"
+                                class="form-control datetimepicker-input"
+                                data-bs-target="#datetimepicker2"
+                                id="endTime"
+                                name="endTime"
+                                th:field="*{endTime}"
+                                placeholder="Event endTime">
+                        <p th:if="${#fields.hasErrors('endTime')}" class="text-danger" th:errors="*{endTime}"></p>
+                        <div class="input-group-append" data-bs-target="#datetimepicker2" data-target="datetimepicker"></div>
+                    </div>
+                </div>
+
+                <button
+                        type="submit"
+                        class="btn btn-primary">create</button>
+            </form>
+        </div>
+    </section>
+
+
+    <script type="text/javascript">
+        $(function () {
+            $('#datetimepicker1').datetimepicker({
+                format: 'YYYY-MM-DD HH:mm'
+            });
+            $('#datetimepicker2').datetimepicker({
+                format: 'YYYY-MM-DD HH:mm'
+            });
+        });
+    </script>
+
+
+</main>
+</body>
+
+</html>

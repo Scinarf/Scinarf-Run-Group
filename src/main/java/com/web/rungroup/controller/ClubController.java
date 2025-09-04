@@ -44,7 +44,7 @@ public class ClubController {
         clubService.saveClub(club);
 
         if (result.hasErrors()){
-            model.addAttribute("club");
+            model.addAttribute("club", club);
             return "clubs-create";
         }
         return "redirect:/clubs";
@@ -83,5 +83,12 @@ public class ClubController {
     public String deleteClub(@PathVariable("clubId") long clubId){
         clubService.delete(clubId);
         return "redirect:/clubs";
+    }
+
+    @GetMapping("/clubs/search")
+    public String searchClub(@RequestParam(value = "query") String query, Model model){
+        List<ClubDto> clubs = clubService.searchClubs(query);
+        model.addAttribute("club", clubs);
+        return "clubs-list";
     }
 }
