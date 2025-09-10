@@ -8,7 +8,11 @@ import com.web.rungroup.repository.EventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import static com.web.rungroup.map.EventMapper.mapToEvent;
+import static com.web.rungroup.map.EventMapper.mapToEventDto;
 
 @Service
 public class EventServiceImpl implements EventService{
@@ -26,6 +30,30 @@ public class EventServiceImpl implements EventService{
         Club club = cRepo.findById(clubId).get();
         Event event = mapToEvent(eventDto);
         event.setClub(club);
+        eRepo.save(event);
+    }
+
+    @Override
+    public List<EventDto> findAllEvents() {
+        List <Event> events = eRepo.findAll();
+        return events.stream().map(event -> mapToEventDto(event)).collect(Collectors.toList());
+    }
+
+    @Override
+    public EventDto findByEventId(Long eventId) {
+        Event event = eRepo.findById(eventId).get();
+        return mapToEventDto(event);
+    }
+
+    @Override
+    public void updateEvent(EventDto eventDto) {
+        Event event = mapToEvent(eventDto);
+        eRepo.save(event);
+    }
+
+    @Override
+    public void deleteEvent(long eventId) {
+        eRepo.deleteById(eventId);
     }
 
 

@@ -1,6 +1,7 @@
 package com.web.rungroup.dto;
 
 
+import com.web.rungroup.model.Club;
 import lombok.Builder;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -18,6 +19,7 @@ public class EventDto {
     private LocalDateTime endTime;
     private String photoUrl;
     private String type;
+    private Club club;
 
     private LocalDateTime createdOn;
 
